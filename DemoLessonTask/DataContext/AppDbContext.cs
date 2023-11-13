@@ -11,4 +11,10 @@ public class AppDbContext : DbContext
     public virtual DbSet<Car> Cars { get; set; }
     public virtual DbSet<PersonCars> PersonCars { get; set; }
 
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        base.OnConfiguring(optionsBuilder);
+
+        optionsBuilder.UseLazyLoadingProxies(true);
+    }
 }

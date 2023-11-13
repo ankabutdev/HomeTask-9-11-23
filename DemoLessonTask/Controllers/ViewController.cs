@@ -16,6 +16,16 @@ public class ViewController : ControllerBase
         _context = context;
     }
 
+    [HttpGet("products")]
+    public async Task<IActionResult> GetProduct(int productId)
+    {
+        var cars = _context.Cars.Find(productId);
+
+        var personCarName = cars.CarPersons.First().Persons.Name;
+
+        return Ok(personCarName);
+    }
+
     [HttpGet()]
     public async Task<IActionResult> ManyToManyPersonCarsAsync()
     {
@@ -43,7 +53,7 @@ public class ViewController : ControllerBase
     {
         var cars = await _context.Cars.ToListAsync();
         var persons = await _context.Persons.ToListAsync();
-
+        
         return Ok(new
         {
             Cars = cars,
@@ -138,4 +148,5 @@ public class ViewController : ControllerBase
 
         return Ok("true");
     }
+
 }

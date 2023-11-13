@@ -8,7 +8,7 @@ public class PersonCars
 
     public int CarId { get; set; }
 
-    public Person Persons { get; set; }
+    public virtual Person Persons { get; set; }
 
-    public Car Cars { get; set; }
+    public virtual Car Cars { get; set; }
 }
